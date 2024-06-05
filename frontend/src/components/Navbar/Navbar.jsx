@@ -8,7 +8,6 @@ const Navbar = () => {
         <nav id="nav">
             <NavLink to="/">
                 <img src={Logo} className="main-nav-logo-image" alt="Argent Bank Logo"/>
-                <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
             <div>
                 <a className="main-nav-item" href="./sign-in.html">
