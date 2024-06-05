@@ -1,8 +1,14 @@
-
+import React from 'react';
+import { BrowserRouter as Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
-    "bonjour"
+    <BrowserRouter>
+    <Navbar />
+      <Route path="/" component={Home} />
+    </BrowserRouter>
   );
 }
 
