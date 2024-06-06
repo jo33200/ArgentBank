@@ -1,4 +1,4 @@
-import './Features.css';
+import './Features.scss';
 
 const Features = ({icon, title, description}) => {
     return (

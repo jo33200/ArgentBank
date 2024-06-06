@@ -1,4 +1,4 @@
-import './Navbar.css'
+import './Navbar.scss'
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/argentBankLogo.webp'
 
@@ -9,14 +9,12 @@ const Navbar = () => {
             <NavLink to="/">
                 <img src={Logo} className="main-nav-logo-image" alt="Argent Bank Logo"/>
             </NavLink>
-            <NavLink to="/">
             <div>
-                <a className="main-nav-item" href="./sign-in.html">
+                <NavLink to="/login" className="main-nav-item">
                 <i className="fa fa-user-circle"></i>
                 Sign In
-                </a>
+                </NavLink>
             </div>
-            </NavLink>
         </nav>
     );
 };
