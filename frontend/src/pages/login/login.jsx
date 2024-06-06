@@ -20,7 +20,7 @@ const Login = () => {
           <div className="input-remember">
             <input type="checkbox" id="remember-me" /><label htmlFor="remember-me">Remember me</label>
           </div>
-          <Button to="/user" >
+          <Button className="button-sign" to="/user" >
         Sign In
       </Button>
         </form>

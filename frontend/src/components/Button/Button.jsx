@@ -11,7 +11,7 @@ const Button = ({ to, children }) => {
   }
 
   return (
-    <button className='button' onClick={handleClick} >
+    <button id='button' onClick={handleClick} >
       {children}
     </button>
   );

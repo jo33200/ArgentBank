@@ -9,14 +9,14 @@
   .sign-in-icon {
     font-size: 5rem;
   }
- .sign-in-content {
+.sign-in-content {
   box-sizing: border-box;
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
   width: 300px;
   background-color: white;
-  }
+  
 
   .sign-in-icon {
     font-size: 5rem;
@@ -45,3 +45,11 @@
   .input-remember label {
     margin-left: 0.25rem;
   }
+
+  #button{
+    width: 100%;
+    border: none;
+    font-size: 1.1rem;
+    text-decoration: underline;
+  }
+}
