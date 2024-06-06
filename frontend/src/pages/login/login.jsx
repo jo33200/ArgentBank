@@ -1,7 +1,10 @@
 import "./login.scss";
 import React from "react";
+import Button from "../../components/Button/Button"; 
+
 
 const Login = () => {
+
   return (
     <main className="main bg-dark">
        <section className="sign-in-content">
@@ -17,7 +20,9 @@ const Login = () => {
           <div className="input-remember">
             <input type="checkbox" id="remember-me" /><label htmlFor="remember-me">Remember me</label>
           </div>
-            <button className="sign-in-button">Sign In</button>
+          <Button to="/user" >
+        Sign In
+      </Button>
         </form>
       </section>
     </main>
