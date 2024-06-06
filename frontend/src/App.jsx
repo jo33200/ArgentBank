@@ -4,7 +4,6 @@ import Home from './pages/home/home';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Login from './pages/login/login';
-import './App.scss';
 
 function App() {
   return (
