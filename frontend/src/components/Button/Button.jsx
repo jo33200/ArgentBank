@@ -1,9 +1,17 @@
 import React from 'react';
 import './Button.scss';
+import { useNavigate } from 'react-router-dom';
 
-const Button = ({ onClick, children }) => {
+const Button = ({ to, children }) => {
+
+  const Navigate = useNavigate();
+
+  const handleClick = () => {
+    Navigate(to);
+  }
+
   return (
-    <button className='button' onClick={onClick} >
+    <button className='button' onClick={handleClick} >
       {children}
     </button>
   );
