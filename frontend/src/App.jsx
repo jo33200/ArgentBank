@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" component={Home} />
+        <Route path="/" element={<Home />} />
       </Routes>
       <Footer/>
     </BrowserRouter>
