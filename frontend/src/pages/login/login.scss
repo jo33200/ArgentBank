@@ -1,18 +1,15 @@
 
-.main {
-    flex: 1;
-  }
-
-  .bg-dark {
+.bg-dark {
     background-color: #12002b;
   }
-  .sign-in-icon {
+.sign-in-icon {
     font-size: 5rem;
   }
+
 .sign-in-content {
+  position: absolute;
   box-sizing: border-box;
-  margin: 0 auto;
-  margin-top: 3rem;
+  margin: 2.5% 42.2%;
   padding: 2rem;
   width: 300px;
   background-color: white;

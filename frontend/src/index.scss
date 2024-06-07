@@ -8,10 +8,14 @@ html {
   
 body {
     margin: 0;
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
+    
 }
+
+.main {
+    min-height: 84vh;
+    position: relative;
+    }
 
 .sr-only {
     border: 0 !important;
@@ -27,8 +31,5 @@ body {
     white-space: nowrap !important; /* 3 */
 }
 #root {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+    flex: 1;
 }
