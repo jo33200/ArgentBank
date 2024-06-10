@@ -13,9 +13,14 @@ body {
 }
 
 .main {
-    min-height: 84vh;
     position: relative;
+    @media screen and (min-width: 920px){
+        min-height: 84vh;
     }
+    @media screen and (max-width: 920px) {
+       min-height: 56vh;   
+    }
+}
 
 .sr-only {
     border: 0 !important;
