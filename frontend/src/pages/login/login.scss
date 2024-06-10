@@ -13,6 +13,11 @@
   padding: 2rem;
   width: 300px;
   background-color: white;
+
+  @media screen and (max-width: 920px) {
+    margin: 25px 30%;
+    height: 400px; 
+  }
   
 
   .sign-in-icon {
