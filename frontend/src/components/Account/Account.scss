@@ -12,6 +12,11 @@
     text-align: left;
     margin-bottom: 2rem;
 
+    @media screen and (max-width: 720px){
+      flex-direction: column;
+      
+    }
+
     .account-content-wrapper {
       display: flex;
       flex-direction: column;
@@ -23,6 +28,11 @@
       width: 200px;
       height: 58px;
 
+      @media screen and (max-width: 720px){
+        
+        width: 100%;
+      }
+
       #button {
         font-size: 1.05rem;
         border-color: #00bc77;
@@ -30,6 +40,11 @@
         width: 200px;
         height: 42px;
         font-weight: 900;
+
+        @media screen and (max-width: 720px){
+          width: 100%;
+          
+        }
       }
     }
 
