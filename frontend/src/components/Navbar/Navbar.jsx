@@ -12,7 +12,7 @@ const Navbar = () => {
             <div>
                 <NavLink to="/login" className="main-nav-item">
                 <i className="fa fa-user-circle"></i>
-                Sign In
+                    <p>Sign In</p>
                 </NavLink>
             </div>
         </nav>
