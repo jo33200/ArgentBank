@@ -1,31 +1,56 @@
-import "./login.scss";
-import React from "react";
-import Button from "../../components/Button/Button"; 
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import {Login} from '../../redux/reducers/login/login';
+import Button from '../../components/Button/Button';
+import './login.scss';
+import { set } from 'mongoose';
 
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo, error } = userLogin;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setErrorMessage('veuillez remplir l&apos;email et le mot de passe');
+    } else {
+      dispatch(Login({ email, password }));
+      setErrorMessage('');
+    }
+  };
 
   return (
     <main className="main bg-dark">
       <div className="container-sign-in">
-       <section className="sign-in-content">
+        <section className="sign-in-content">
           <i className="fa fa-user-circle "></i>
           <h1>Sign In</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
-              <label htmlFor="username">Username</label><input type="text" id="username" />
+              <label htmlFor="username">Username</label>
+              <input type="text" id="username" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="input-wrapper">
-              <label htmlFor="password">Password</label><input type="password" id="password" />
+              <label htmlFor="password">Password</label>
+              <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <div className="input-remember">
-              <input type="checkbox" id="remember-me" /><label htmlFor="remember-me">Remember me</label>
+              <input type="checkbox" id="remember-me" />
+              <label htmlFor="remember-me">Remember me</label>
             </div>
-            <Button className="button-sign" to="/user" >
+            { errorMessage && <p className="error-message">{errorMessage}</p> }
+            <Button className="button-sign" type="submit">
               Sign In
             </Button>
           </form>
-        </section>  
+        </section>
       </div>
     </main>
   );
