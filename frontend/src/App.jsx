@@ -4,7 +4,7 @@ import Home from './pages/home/home';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Login from './pages/login/login';
-import User from './pages/user/user';
+import User from './pages/dashboard/dashboard';
 import Error from './pages/error/error';
 
 function App() {
