@@ -7,7 +7,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const Login = (credentials) => {
     return dispatch =>{
         dispatch({type: LOGIN_REQUEST});
-        axios.post('http://localhost:3000/api/login', credentials,{
+        axios.post('http://localhost:3001/api/v1/user/login', credentials,{
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -18,7 +18,7 @@ export const Login = (credentials) => {
                 type: LOGIN_SUCCESS,
                 payload: response.data.body
             });
-        }).catch(error => { console.log("erreur de login:", error.response.data.message)
+        }).catch(error => { console.log("erreur de login:", error)
             dispatch({
                 type: LOGIN_FAILURE,
                 payload: error.response.data.message
