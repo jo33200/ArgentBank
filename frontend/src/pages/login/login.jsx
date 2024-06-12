@@ -31,7 +31,6 @@ const Login = () => {
     } else {
       dispatch(loginAction({ email, password }));
       setErrorMessage('');
-      navigate('/user');
     }
   };
 
@@ -55,7 +54,7 @@ const Login = () => {
               <label htmlFor="remember-me">Remember me</label>
             </div>
             { errorMessage && <p className="error-message">{errorMessage}</p> }
-            <Button className="button-sign" type="submit">
+            <Button className="button-sign" type="submit" onClick={handleSubmit} >
               Sign In
             </Button>
           </form>
