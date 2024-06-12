@@ -7,10 +7,10 @@ const Account = (props) => {
     const { title, amount, description } = props;
 
     return (
-        <div class="account-content-wrapper">
-          <h3 class="account-title">{title}</h3>
-          <p class="account-amount">{amount}</p>
-          <p class="account-amount-description">{description}</p>
+        <div className="account-content-wrapper">
+          <h3 className="account-title">{title}</h3>
+          <p className="account-amount">{amount}</p>
+          <p className="account-amount-description">{description}</p>
         </div>
     );
 }
