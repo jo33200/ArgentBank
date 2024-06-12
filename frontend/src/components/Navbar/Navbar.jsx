@@ -1,6 +1,7 @@
 import './Navbar.scss'
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/argentBankLogo.webp'
+import React from 'react';
 
 const Navbar = () => { 
 
