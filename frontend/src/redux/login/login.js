@@ -13,6 +13,7 @@ export const Login = (credentials) => {
             }
         }).then(response => {
             //const token = response.data.body.token;
+            //localStorage.setItem('authToken', token); // Stocker le token dans le stockage local
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: response.data.body
