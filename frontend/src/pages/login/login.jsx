@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {Login} from '../../redux/reducers/login/login';
+import {Login as loginAction} from '../../redux/login/login';
 import Button from '../../components/Button/Button';
 import './login.scss';
-import { set } from 'mongoose';
 
 
 const Login = () => {
@@ -16,13 +15,23 @@ const Login = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, error } = userLogin;
 
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/dashboard'); // Redirigez vers le tableau de bord ou une autre page
+    }
+    if (error) {
+      setErrorMessage(error); // Affichez l'erreur si elle existe
+    }
+  }, [userInfo, error, navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
       setErrorMessage('veuillez remplir l&apos;email et le mot de passe');
     } else {
-      dispatch(Login({ email, password }));
+      dispatch(loginAction({ email, password }));
       setErrorMessage('');
+      navigate('/user');
     }
   };
 
