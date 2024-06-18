@@ -12,7 +12,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userLogin = useSelector((state) => state.userLogin);
+  const userLogin = useSelector((state) => state.auth);
   const { userInfo, error } = userLogin;
 
   useEffect(() => {

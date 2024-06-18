@@ -1,0 +1,158 @@
+swagger: "2.0"
+info: 
+  title: Bank Argent API documentation
+  description: "API pour la gestion des transactions dans ArgentBank."
+  version: "1.0.0"
+ termsOfService: 'http://swagger.io/terms/'
+host: localhost:3001
+basePath: /api/v1
+schemes:
+- http
+paths:
+  /transactions:
+    get:
+      summary: "Récupérer les transactions du mois en cours, groupées par compte"
+      description: "Retourne toutes les transactions de l'utilisateur pour le mois en cours, groupées par compte."
+      tags:
+      - "Transactions"
+      parameters:
+        - name: "userId"
+          in: "query"
+          description: "ID de l'utilisateur pour lequel récupérer les transactions"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Liste des transactions récupérée avec succès"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+        400:
+          description: "Requête invalide"
+        404:
+          description: "Utilisateur non trouvé"
+    post:
+      summary: "Ajouter une nouvelle information à une transaction existante"
+      description: "Permet d'ajouter une information à une transaction existante, sans créer ou supprimer de transaction."
+      tags:
+      - "Transactions"
+      parameters:
+        - name: "transactionId"
+          in: "query"
+          description: "ID de la transaction à mettre à jour"
+          required: true
+          type: "string"
+        - name: "info"
+          in: "body"
+          description: "Nouvelle information à ajouter à la transaction"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              key:
+                type: "string"
+              value:
+                type: "string"
+      responses:
+        200:
+          description: "Information ajoutée avec succès"
+        400:
+          description: "Requête invalide"
+        404:
+          description: "Transaction non trouvée"
+  
+  /transactions/{transactionId}:
+    get:
+      summary: "Récupérer les détails d'une transaction spécifique"
+      description: "Retourne les détails d'une transaction spécifique."
+      tags:
+      - "Transactions"
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          description: "ID de la transaction à récupérer"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Détails de la transaction récupérés avec succès"
+          schema:
+            $ref: "#/definitions/Transaction"
+        400:
+          description: "Requête invalide"
+        404:
+          description: "Transaction non trouvée"
+    put:
+      summary: "Modifier une transaction existante"
+      description: "Permet de modifier les informations d'une transaction existante."
+      tags:
+      - "Transactions"
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          description: "ID de la transaction à modifier"
+          required: true
+          type: "string"
+        - name: "transaction"
+          in: "body"
+          description: "Nouvelles informations de la transaction"
+          required: true
+          schema:
+            $ref: "#/definitions/Transaction"
+      responses:
+        200:
+          description: "Transaction modifiée avec succès"
+        400:
+          description: "Requête invalide"
+        404:
+          description: "Transaction non trouvée"
+    delete:
+      summary: "Supprimer une information d'une transaction existante"
+      description: "Permet de supprimer une information spécifique d'une transaction sans supprimer la transaction elle-même."
+      tags:
+      - "Transactions"
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          description: "ID de la transaction à modifier"
+          required: true
+          type: "string"
+        - name: "infoKey"
+          in: "query"
+          description: "Clé de l'information à supprimer de la transaction"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Information supprimée avec succès"
+        400:
+          description: "Requête invalide"
+        404:
+          description: "Transaction ou information non trouvée"
+
+definitions:
+  Transaction:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      date:
+        type: "string"
+        format: "date-time"
+      amount:
+        type: "number"
+        format: "double"
+      accountId:
+        type: "string"
+      description:
+        type: "string"
+      type:
+        type: "string"
+        enum:
+        - "credit"
+        - "debit"
+      info:
+        type: "object"
+        additionalProperties:
+          type: "string"

@@ -1,0 +1,158 @@
+swagger: "2.0"
+info:
+  title: Bank Argent API documentation
+  description: "API for transaction management in ArgentBank."
+  version: "1.0.0"
+  
+host: localhost:3001
+basePath: /api/v1
+schemes:
+- https
+paths:
+  /transactions:
+    get:
+      summary: "Retrieve current month's transactions grouped by account"
+      description: "Returns all transactions of the user for the current month, grouped by account."
+      tags:
+      - "Transactions"
+      parameters:
+        - name: "userId"
+          in: "query"
+          description: "ID of the user whose transactions are to be retrieved"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "List of transactions retrieved successfully"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+        400:
+          description: "Invalid request"
+        404:
+          description: "User not found"
+    post:
+      summary: "Add new information to an existing transaction"
+      description: "Allows adding information to an existing transaction without creating or deleting a transaction."
+      tags:
+      - "Transactions"
+      parameters:
+        - name: "transactionId"
+          in: "query"
+          description: "ID of the transaction to be updated"
+          required: true
+          type: "string"
+        - name: "info"
+          in: "body"
+          description: "New information to be added to the transaction"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              key:
+                type: "string"
+              value:
+                type: "string"
+      responses:
+        200:
+          description: "Information added successfully"
+        400:
+          description: "Invalid request"
+        404:
+          description: "Transaction not found"
+  
+  /transactions/{transactionId}:
+    get:
+      summary: "Retrieve details of a specific transaction"
+      description: "Returns the details of a specific transaction."
+      tags:
+      - "Transactions"
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          description: "ID of the transaction to be retrieved"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Transaction details retrieved successfully"
+          schema:
+            $ref: "#/definitions/Transaction"
+        400:
+          description: "Invalid request"
+        404:
+          description: "Transaction not found"
+    put:
+      summary: "Update an existing transaction"
+      description: "Allows updating the information of an existing transaction."
+      tags:
+      - "Transactions"
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          description: "ID of the transaction to be updated"
+          required: true
+          type: "string"
+        - name: "transaction"
+          in: "body"
+          description: "New information of the transaction"
+          required: true
+          schema:
+            $ref: "#/definitions/Transaction"
+      responses:
+        200:
+          description: "Transaction updated successfully"
+        400:
+          description: "Invalid request"
+        404:
+          description: "Transaction not found"
+    delete:
+      summary: "Delete information from an existing transaction"
+      description: "Allows deleting specific information from a transaction without deleting the transaction itself."
+      tags:
+      - "Transactions"
+      parameters:
+        - name: "transactionId"
+          in: "path"
+          description: "ID of the transaction to be modified"
+          required: true
+          type: "string"
+        - name: "infoKey"
+          in: "query"
+          description: "Key of the information to be deleted from the transaction"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Information deleted successfully"
+        400:
+          description: "Invalid request"
+        404:
+          description: "Transaction or information not found"
+
+definitions:
+  Transaction:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      date:
+        type: "string"
+        format: "date-time"
+      amount:
+        type: "number"
+        format: "double"
+      accountId:
+        type: "string"
+      description:
+        type: "string"
+      type:
+        type: "string"
+        enum:
+        - "credit"
+        - "debit"
+      info:
+        type: "object"
+        additionalProperties:
+          type: "string"

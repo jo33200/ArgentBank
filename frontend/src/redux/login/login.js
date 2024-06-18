@@ -12,11 +12,14 @@ export const Login = (credentials) => {
                 'Content-Type': 'application/json',
             }
         }).then(response => {
-            //const token = response.data.body.token;
-            //localStorage.setItem('authToken', token); // Stocker le token dans le stockage local
+            const token = response.data.body.token;
+            localStorage.setItem('authToken', token);
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: response.data.body
+                payload: {
+                    token: token,
+                    user: response.data.body.user
+                }
             });
         }).catch(error => { console.log("erreur de login:", error)
             dispatch({
