@@ -1,36 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Login as loginAction } from '../../redux/login/login'; // Assure-toi que ce chemin est correct
+import { logIn } from '../../redux/actions/auth.actions';
 import Button from '../../components/Button/Button';
 import './login.scss';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((state) => state.auth);
+  const { isLoggedIn, error } = user;
 
-  // Assure-toi que `state.auth` correspond bien au nom utilisé dans `combineReducers`
-  const userLogin = useSelector((state) => state.login); 
-  const { userInfo, error } = userLogin;
+
 
   useEffect(() => {
-    if (userInfo) {
-      navigate('/dashboard'); // Redirige vers le tableau de bord si l'utilisateur est connecté
+    if (isLoggedIn) {
+      navigate('/dashboard');
     }
     if (error) {
-      setErrorMessage(error); // Affiche l'erreur s'il y en a une
+      setErrorMessage(error); 
     }
-  }, [userInfo, error, navigate]);
+  }, [isLoggedIn, error, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
-      setErrorMessage('Veuillez remplir l\'email et le mot de passe'); // Correction de l'apostrophe
+      setErrorMessage('Veuillez remplir l\'email et le mot de passe');
     } else {
-      dispatch(loginAction({ email, password }));
+      dispatch(logIn({ email, password, rememberMe }));
       setErrorMessage('');
     }
   };
@@ -51,7 +54,7 @@ const Login = () => {
               <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <div className="input-remember">
-              <input type="checkbox" id="remember-me" />
+              <input type="checkbox" id="remember-me" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />
               <label htmlFor="remember-me">Remember me</label>
             </div>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
