@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {Login as loginAction} from '../../redux/login/login';
+import { Login as loginAction } from '../../redux/login/login'; // Assure-toi que ce chemin est correct
 import Button from '../../components/Button/Button';
 import './login.scss';
-
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,22 +11,24 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userLogin = useSelector((state) => state.auth);
+
+  // Assure-toi que `state.auth` correspond bien au nom utilisé dans `combineReducers`
+  const userLogin = useSelector((state) => state.login); 
   const { userInfo, error } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/dashboard'); // Redirigez vers le tableau de bord ou une autre page
+      navigate('/dashboard'); // Redirige vers le tableau de bord si l'utilisateur est connecté
     }
     if (error) {
-      setErrorMessage(error); // Affichez l'erreur si elle existe
+      setErrorMessage(error); // Affiche l'erreur s'il y en a une
     }
   }, [userInfo, error, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
-      setErrorMessage('veuillez remplir l&apos;email et le mot de passe');
+      setErrorMessage('Veuillez remplir l\'email et le mot de passe'); // Correction de l'apostrophe
     } else {
       dispatch(loginAction({ email, password }));
       setErrorMessage('');
@@ -53,8 +54,8 @@ const Login = () => {
               <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember me</label>
             </div>
-            { errorMessage && <p className="error-message">{errorMessage}</p> }
-            <Button className="button-sign" type="submit" onClick={handleSubmit} >
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <Button className="button-sign" type="submit">
               Sign In
             </Button>
           </form>

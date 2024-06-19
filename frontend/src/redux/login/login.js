@@ -21,12 +21,11 @@ export const Login = (credentials) => {
                     user: response.data.body.user
                 }
             });
-        }).catch(error => { console.log("erreur de login:", error)
+        }).catch(error => {
             dispatch({
                 type: LOGIN_FAILURE,
                 payload: error.response.data.message
             });
         });
-
     }
-}
+};

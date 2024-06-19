@@ -1,19 +1,18 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Logo from '../../assets/argentBankLogo.webp';
-import { logoutSuccess } from '../../redux/logout/logoutReducer';
+import { Logout as logoutAction } from '../../redux/logout/logout';
 
 const Navbar = () => {
-  const user = useSelector((state) => state.userLogin.user);
-  const isLoggedIn = useSelector((state) => state.userLogin.isLoggedIn);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    dispatch(logoutSuccess()); // Utilisation de l'action logoutSuccess pour mettre à jour le store
-    navigate('/login');
+  // Sélection de l'état d'authentification depuis le store Redux
+  const { userInfo } = useSelector((state) => state.login); // Assurez-vous que le nom du slice est correct
+  const isLoggedIn = !!userInfo;
+
+  const handleLogout = () => {
+    dispatch(logoutAction());
   };
 
   return (
@@ -23,11 +22,11 @@ const Navbar = () => {
       </NavLink>
       {isLoggedIn ? (
         <>
-          <NavLink to='/profile'>
+          <NavLink to="/profile">
             <i className='fa fa-user-circle main-nav-item'></i>
-            {user?.userName}
+            {userInfo.username} {/* Assurez-vous que userInfo contient le nom d'utilisateur */}
           </NavLink>
-          <NavLink to='/' onClick={handleLogout}>
+          <NavLink to="/" onClick={handleLogout}>
             <i className='fa fa-sign-out'></i>
             Sign Out
           </NavLink>

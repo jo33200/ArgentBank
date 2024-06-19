@@ -23,3 +23,5 @@ export const logoutReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export default logoutReducer;
