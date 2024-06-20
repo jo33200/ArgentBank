@@ -1,8 +1,9 @@
 #nav {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 20px;
+    padding: 5px 28px 5px 20px;
   }
   
 a {
@@ -20,7 +21,6 @@ a.router-link-exact-active {
   
 .main-nav-item {
     text-decoration: none;
-    margin-right: 0.5rem;
     font-weight: bold;
     color: #2c3e50;
   }
@@ -37,4 +37,18 @@ a.router-link-exact-active {
 .main-nav-logo-image {
     max-width: 100%;
     width: 200px;
+  }
+
+  .sign-in {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4.5px;
+  }
+
+  .logout {
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }

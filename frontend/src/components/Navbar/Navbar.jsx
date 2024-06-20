@@ -1,4 +1,5 @@
 import React from 'react';
+import './Navbar.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Logo from '../../assets/argentBankLogo.webp';
@@ -23,7 +24,7 @@ const Navbar = () => {
         <img src={Logo} className="main-nav-logo-image" alt="Argent Bank Logo" />
       </NavLink>
       {isLoggedIn ? (
-        <>
+        <div className='logout'>
           <NavLink to='/dashboard'>
             <i className='fa fa-user-circle main-nav-item'></i>
             {user?.userName}
@@ -32,9 +33,9 @@ const Navbar = () => {
             <i className='fa fa-sign-out'></i>
             Sign Out
           </NavLink>
-        </>
+        </div>
       ) : (
-        <div>
+        <div className='sign-in'>
           <NavLink to="/login" className="main-nav-item">
             <i className="fa fa-user-circle"></i>
             <p>Sign In</p>
