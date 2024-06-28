@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Logo from '../../assets/argentBankLogo.webp';
 import { logOut } from '../../redux/actions/auth.actions';
+import UserModal from '../userModal/UserModal';  // Chemin corrigé
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
- 
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logOut()); 
     navigate('/');
+  };
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -25,10 +34,10 @@ const Navbar = () => {
       </NavLink>
       {isLoggedIn ? (
         <div className='logout'>
-          <NavLink to='/dashboard'>
-            <i className='fa fa-user-circle main-nav-item'></i>
+          <span onClick={handleModalOpen} className='main-nav-item' style={{ cursor: 'pointer' }}>
+            <i className='fa fa-user-circle'></i>
             {user?.userName}
-          </NavLink>
+          </span>
           <NavLink to='/' onClick={handleLogout}>
             <i className='fa fa-sign-out'></i>
             Sign Out
@@ -42,6 +51,7 @@ const Navbar = () => {
           </NavLink>
         </div>
       )}
+      <UserModal isOpen={isModalOpen} onClose={handleModalClose} />
     </nav>
   );
 };
