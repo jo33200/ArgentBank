@@ -9,22 +9,19 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-
+  const [errorMessage, setErrorMessage] = useState('Veuillez remplir l\'email et le mot de passe'); // Initial message
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth);
   const { isLoggedIn, error } = user;
 
-
-
   useEffect(() => {
     if (isLoggedIn) {
       navigate('/dashboard');
     }
     if (error) {
-      setErrorMessage(error); 
+      setErrorMessage('Email et/ou mot de passe erroné(s)');
     }
   }, [isLoggedIn, error, navigate]);
 
