@@ -107,29 +107,6 @@ paths:
           description: "Requête invalide"
         404:
           description: "Transaction non trouvée"
-    delete:
-      summary: "Supprimer une information d'une transaction existante"
-      description: "Permet de supprimer une information spécifique d'une transaction sans supprimer la transaction elle-même."
-      tags:
-      - "Transactions"
-      parameters:
-        - name: "transactionId"
-          in: "path"
-          description: "ID de la transaction à modifier"
-          required: true
-          type: "string"
-        - name: "infoKey"
-          in: "query"
-          description: "Clé de l'information à supprimer de la transaction"
-          required: true
-          type: "string"
-      responses:
-        200:
-          description: "Information supprimée avec succès"
-        400:
-          description: "Requête invalide"
-        404:
-          description: "Transaction ou information non trouvée"
 
 definitions:
   Transaction:

@@ -107,29 +107,6 @@ paths:
           description: "Invalid request"
         404:
           description: "Transaction not found"
-    delete:
-      summary: "Delete information from an existing transaction"
-      description: "Allows deleting specific information from a transaction without deleting the transaction itself."
-      tags:
-      - "Transactions"
-      parameters:
-        - name: "transactionId"
-          in: "path"
-          description: "ID of the transaction to be modified"
-          required: true
-          type: "string"
-        - name: "infoKey"
-          in: "query"
-          description: "Key of the information to be deleted from the transaction"
-          required: true
-          type: "string"
-      responses:
-        200:
-          description: "Information deleted successfully"
-        400:
-          description: "Invalid request"
-        404:
-          description: "Transaction or information not found"
 
 definitions:
   Transaction:
