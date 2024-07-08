@@ -6,36 +6,46 @@ import Button from '../../components/Button/Button';
 import './login.scss';
 
 const Login = () => {
+  // États pour gérer les champs du formulaire
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [localErrorMessage, setLocalErrorMessage] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
 
+  // Initialisation du dispatcher pour envoyer des actions Redux
   const dispatch = useDispatch();
+  
+  // Navigation pour rediriger les utilisateurs
   const navigate = useNavigate();
+  
+  // Sélection des informations d'authentification du store Redux
   const user = useSelector((state) => state.auth);
   const { isLoggedIn, error } = user;
 
+  // Redirige vers le tableau de bord si l'utilisateur est connecté
   useEffect(() => {
     if (isLoggedIn) {
       navigate('/dashboard');
     }
   }, [isLoggedIn, navigate]);
 
+  // Mise à jour du message d'erreur en cas d'échec de l'authentification
   useEffect(() => {
     if (formSubmitted && error) {
       setLocalErrorMessage('Email et/ou mot de passe erroné(s)');
     }
   }, [error, formSubmitted]);
 
+  // Gestionnaire de soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
-
+    // Vérification des champs vides
     if (!email || !password) {
       setLocalErrorMessage('Veuillez remplir tous les champs');
     } else {
+      // Envoi de l'action de connexion avec les informations du formulaire
       dispatch(logIn({ email, password, rememberMe }));
     }
   };
