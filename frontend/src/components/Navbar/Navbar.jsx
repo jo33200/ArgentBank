@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Logo from '../../assets/argentBankLogo.webp';
 import { logOut } from '../../redux/actions/auth.actions';
-import UserModal from '../userModal/UserModal';  // Chemin corrigé
+import UserModal from '../userModal/UserModal'; 
 
 const Navbar = () => {
   const dispatch = useDispatch();
