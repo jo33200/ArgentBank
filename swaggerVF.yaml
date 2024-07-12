@@ -11,6 +11,8 @@ schemes:
 paths:
   /transactions:
     get:
+      security:
+        - Bearer: []
       summary: "Récupérer les transactions du mois en cours, groupées par compte"
       description: "Retourne toutes les transactions de l'utilisateur pour le mois en cours, groupées par compte."
       tags:
@@ -33,6 +35,8 @@ paths:
         404:
           description: "Utilisateur non trouvé"
     post:
+      security:
+        - Bearer: []
       summary: "Ajouter une nouvelle information à une transaction existante"
       description: "Permet d'ajouter une information à une transaction existante, sans créer ou supprimer de transaction."
       tags:
@@ -64,6 +68,8 @@ paths:
   
   /transactions/{transactionId}:
     get:
+      security:
+        - Bearer: []
       summary: "Récupérer les détails d'une transaction spécifique"
       description: "Retourne les détails d'une transaction spécifique."
       tags:
@@ -84,6 +90,8 @@ paths:
         404:
           description: "Transaction non trouvée"
     put:
+      security:
+        - Bearer: []
       summary: "Modifier une transaction existante"
       description: "Permet de modifier les informations d'une transaction existante."
       tags:

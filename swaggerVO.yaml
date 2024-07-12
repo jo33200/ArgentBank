@@ -11,6 +11,8 @@ schemes:
 paths:
   /transactions:
     get:
+      security:
+        - Bearer: []
       summary: "Retrieve current month's transactions grouped by account"
       description: "Returns all transactions of the user for the current month, grouped by account."
       tags:
@@ -33,6 +35,8 @@ paths:
         404:
           description: "User not found"
     post:
+      security:
+        - Bearer: []
       summary: "Add new information to an existing transaction"
       description: "Allows adding information to an existing transaction without creating or deleting a transaction."
       tags:
@@ -64,6 +68,8 @@ paths:
   
   /transactions/{transactionId}:
     get:
+      security:
+        - Bearer: []
       summary: "Retrieve details of a specific transaction"
       description: "Returns the details of a specific transaction."
       tags:
@@ -84,6 +90,8 @@ paths:
         404:
           description: "Transaction not found"
     put:
+      security:
+        - Bearer: []
       summary: "Update an existing transaction"
       description: "Allows updating the information of an existing transaction."
       tags:
