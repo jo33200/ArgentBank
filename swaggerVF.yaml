@@ -3,7 +3,7 @@ info:
   title: Bank Argent API documentation
   description: "API pour la gestion des transactions dans ArgentBank."
   version: "1.0.0"
- termsOfService: 'http://swagger.io/terms/'
+  termsOfService: 'http://swagger.io/terms/'
 host: localhost:3001
 basePath: /api/v1
 schemes:
