@@ -74,7 +74,7 @@ export const getUserName = createAsyncThunk(
 
       return data.body;
     } catch (error) {
-      return rejectWithValue(error.message); // Rejette la promesse avec un message d'erreur
+      return rejectWithValue(error.message); 
     }
   }
 );
