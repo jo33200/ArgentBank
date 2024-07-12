@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { logIn, logOut, getUserName, editUsername } from '../actions/auth.actions';
 
 const initialState = {
-  isLoggedIn: false,               // Indicateur de statut de connexion
+  isLoggedIn: false,
   user: {
     firstName: "",
     lastName: "",
     userName: "",
   },
-  token: null,                     // Token d'authentification
-  error: null,                     // Gestion des erreurs
+  token: null,
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -52,4 +52,4 @@ const authSlice = createSlice({
   },
 });
 
-export default authSlice.reducer; // Exporte le reducer prêt à être utilisé dans le store Redux
+export default authSlice.reducer;
