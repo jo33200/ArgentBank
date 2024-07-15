@@ -18,7 +18,7 @@ paths:
       tags:
       - "Transactions"
       parameters:
-        - name: "userId"
+        - name: "accountId"
           in: "query"
           description: "ID de l'utilisateur pour lequel récupérer les transactions"
           required: true
@@ -34,38 +34,7 @@ paths:
           description: "Requête invalide"
         404:
           description: "Utilisateur non trouvé"
-    post:
-      security:
-        - Bearer: []
-      summary: "Ajouter une nouvelle information à une transaction existante"
-      description: "Permet d'ajouter une information à une transaction existante, sans créer ou supprimer de transaction."
-      tags:
-      - "Transactions"
-      parameters:
-        - name: "transactionId"
-          in: "query"
-          description: "ID de la transaction à mettre à jour"
-          required: true
-          type: "string"
-        - name: "info"
-          in: "body"
-          description: "Nouvelle information à ajouter à la transaction"
-          required: true
-          schema:
-            type: "object"
-            properties:
-              key:
-                type: "string"
-              value:
-                type: "string"
-      responses:
-        200:
-          description: "Information ajoutée avec succès"
-        400:
-          description: "Requête invalide"
-        404:
-          description: "Transaction non trouvée"
-  
+    
   /transactions/{transactionId}:
     get:
       security:
@@ -137,7 +106,7 @@ definitions:
         enum:
         - "credit"
         - "debit"
-      info:
-        type: "object"
-        additionalProperties:
-          type: "string"
+      note:
+        type: "string"
+      category:
+        type: "string"
